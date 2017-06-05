@@ -27,11 +27,13 @@ def get_bad_days():
     c = db.cursor()
     c.execute("select * from bad_days;")
     return c.fetchall()
+	for row in result:
+	print row[0]
     db.close()
 
 # Print the output of the database analysis
-print(get_article_leaderboard())
+get_article_leaderboard()
 
-print(get_author_leaderboard())
+get_author_leaderboard()
 
-print(get_bad_days())
+get_bad_days()
