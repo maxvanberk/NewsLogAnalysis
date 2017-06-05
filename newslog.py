@@ -36,12 +36,11 @@ def get_bad_days():
     db.close()
 
 # Print the output of the database analysis
-print("What are the most popular three articles of all time?"+ '\n')
+print("What are the most popular three articles of all time?" + '\n')
 get_article_leaderboard()
 print('\n')
-print("Who are the most popular article authors of all time?"+ '\n')
+print("Who are the most popular article authors of all time?" + '\n')
 get_author_leaderboard()
 print('\n')
-print("On which days did more than 1% of requests lead to errors?"+ '\n')
+print("On which days did more than 1% of requests lead to errors?" + '\n')
 get_bad_days()
-
