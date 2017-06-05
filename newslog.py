@@ -1,6 +1,4 @@
 """This is a log analysis tool for the news database"""
-
-import datetime
 import psycopg2
 
 def get_article_leaderboard():
