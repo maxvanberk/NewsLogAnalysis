@@ -8,7 +8,9 @@ def get_article_leaderboard():
     db = psycopg2.connect("dbname=news")
     c = db.cursor()
     c.execute("select * from article_leaderboard")
-    return c.fetchall()
+    result_articles = c.fetchall()
+    for row in result_articles:
+        print row[0]
     db.close()
 
 
@@ -17,7 +19,9 @@ def get_author_leaderboard():
     db = psycopg2.connect("dbname=news")
     c = db.cursor()
     c.execute("select * from author_leaderboard;")
-    return c.fetchall()
+    result_authors = c.fetchall()
+    for row in result_authors:
+        print row[0]
     db.close()
 
 
@@ -26,14 +30,18 @@ def get_bad_days():
     db = psycopg2.connect("dbname=news")
     c = db.cursor()
     c.execute("select * from bad_days;")
-    return c.fetchall()
-	for row in result:
-	print row[0]
+    result_days = c.fetchall()
+    for row in result_days:
+        print row[0]
     db.close()
 
 # Print the output of the database analysis
+print("What are the most popular three articles of all time?"+ '\n')
 get_article_leaderboard()
-
+print('\n')
+print("Who are the most popular article authors of all time?"+ '\n')
 get_author_leaderboard()
-
+print('\n')
+print("On which days did more than 1% of requests lead to errors?"+ '\n')
 get_bad_days()
+
