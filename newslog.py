@@ -5,6 +5,7 @@
 
 
 import psycopg2
+from datetime import datetime
 
 
 def get_article_leaderboard():
@@ -16,7 +17,7 @@ def get_article_leaderboard():
     result_articles = c.fetchall()
     for row in result_articles:
         x, y = row
-        print('Article: ' + '%s\t' % (x) + 'Views: ' + '%s' % (y))
+        print('Article: ' + '%s' % (x) + ' - Views: ' + '%s' % (y))
     db.close()
 
 
@@ -29,7 +30,7 @@ def get_author_leaderboard():
     result_authors = c.fetchall()
     for row in result_authors:
         x, y = row
-        print('Author: ' + '%s\t' % (x) + 'Views: ' + '%s' % (y))
+        print('Author: ' + '%s' % (x) + ' - Views: ' + '%s' % (y))
     db.close()
 
 
@@ -42,7 +43,11 @@ def get_bad_days():
     result_days = c.fetchall()
     for row in result_days:
         x, y = row
-        print('Date: ' + '%s\t' % (x) + 'Error Percentage: ' + '%s' % (y))
+        oldformat = str(x)
+        datetimeobject = datetime.strptime(oldformat, '%Y-%m-%d')
+        newformat = datetimeobject.strftime('%B %d, %Y')
+        x = newformat
+        print('Date: ' + '%s' % (x) + ' - Error Percentage: ' + '%s' % (y))
     db.close()
 
 # Print the output of the database analysis
