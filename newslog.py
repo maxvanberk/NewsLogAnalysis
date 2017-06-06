@@ -1,4 +1,8 @@
+#! /usr/bin/env python
+
+
 """This is a log analysis tool for the news database"""
+
 
 import psycopg2
 
@@ -12,7 +16,7 @@ def get_article_leaderboard():
     result_articles = c.fetchall()
     for row in result_articles:
         x, y = row
-        print('Article: ' + '%s\t' % (x)+ 'Views: ' + '%s' % (y))
+        print('Article: ' + '%s\t' % (x) + 'Views: ' + '%s' % (y))
     db.close()
 
 
@@ -25,7 +29,7 @@ def get_author_leaderboard():
     result_authors = c.fetchall()
     for row in result_authors:
         x, y = row
-        print('Author: ' + '%s\t' % (x)+ 'Views: ' + '%s' % (y))
+        print('Author: ' + '%s\t' % (x) + 'Views: ' + '%s' % (y))
     db.close()
 
 
@@ -37,7 +41,8 @@ def get_bad_days():
     c.execute("select * from bad_days;")
     result_days = c.fetchall()
     for row in result_days:
-        print row[0]
+        x, y = row
+        print('Date: ' + '%s\t' % (x) + 'Error Percentage: ' + '%s' % (y))
     db.close()
 
 # Print the output of the database analysis

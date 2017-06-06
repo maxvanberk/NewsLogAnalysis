@@ -23,9 +23,7 @@ FROM Author_Count group by Author_Count.name order by views desc;
 create view article_leaderboard as
 select title, views from article_counter order by views desc limit 3;	 
 	 
-
-
-create view date_overview as select total_query.date, error_query.error, total_query.total, ((error_query.error/total_query.total)*100) as percentage
+create view date_overview as select total_query.date, error_query.error, total_query.total, ((cast(error as float) / cast (total as float))*100) as percentage
 from (select date(time), count(status) as error
 from log
 where status!= '200 OK'
@@ -34,5 +32,5 @@ group by date(time)) as error_query join
 from log
 group by date(time)) as total_query on error_query.date=total_query.date;
 
-create view bad_days as select date from date_overview where ((cast(error as float) / cast (total as float))*100)>1;
+create view bad_days as select date,  percentage from date_overview where percentage>1;
 
